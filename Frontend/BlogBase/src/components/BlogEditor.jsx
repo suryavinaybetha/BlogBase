@@ -116,15 +116,15 @@ const BlogEditor = ({ blog, onSave, onClose }) => {
                         <button
                             type="button"
                             onClick={onClose}
-                            className="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-100 transition-colors"
-                        >
-                            Cancel
-                        </button>
-                        <button
-                            type="submit"
                             className="px-4 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition-colors"
                         >
-                            {blog ? "Update Blog" : "Publish Blog"}
+                            Publish
+                        </button>
+                        <button
+                            type="submit"                          
+                            className="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-100 transition-colors"
+                        >
+                            {blog ? "Update Blog" : "Create Blog"}
                         </button>
                     </div>
                 </form>

@@ -130,19 +130,22 @@ const Dashboard = () => {
                                     <h2 className="text-xl font-semibold mb-2 text-gray-800">{blog.title}</h2>
                                     <p className="text-gray-600 mb-4 line-clamp-3">{blog.content.substring(0, 150)}...</p>
                                     <div className="text-sm text-gray-500 mb-4">{new Date(blog.createdAt).toLocaleDateString()}</div>
-                                    <div className="flex justify-end gap-2">
-                                        <button
-                                            onClick={() => handleEditBlog(blog)}
-                                            className="px-3 py-1 text-sm border border-gray-300 rounded text-gray-700 hover:bg-gray-100 transition-colors"
-                                        >
-                                            Edit
-                                        </button>
-                                        <button
-                                            onClick={() => handleDeleteBlog(blog.id)}
-                                            className="px-3 py-1 text-sm border border-red-300 rounded text-red-600 hover:bg-red-50 transition-colors"
-                                        >
-                                            Delete
-                                        </button>
+                                    <div className="flex justify-between gap-2">
+                                        <div className="flex justify-start gap-2">
+                                            <button
+                                                onClick={() => handleEditBlog(blog)}
+                                                className="px-3 py-1 text-sm border border-gray-300 rounded text-gray-700 hover:bg-gray-100 transition-colors"
+                                            >
+                                                Edit
+                                            </button>
+                                            <button
+                                                onClick={() => handleDeleteBlog(blog.id)}
+                                                className="px-3 py-1 text-sm border border-red-300 rounded text-red-600 hover:bg-red-50 transition-colors"
+                                            >
+                                                Delete
+                                            </button>
+                                        </div>
+                                        <button className="px-3 py-1 text-sm bg-gray-800 rounded text-white hover:bg-gray-700 transition-colors">Publish</button>
                                     </div>
                                 </div>
                             </motion.div>
