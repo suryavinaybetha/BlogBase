@@ -34,11 +34,23 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorize -> {
 
+                    // Allowing Swagger
+                    authorize.requestMatchers(
+                            "/v3/api-docs/**",
+                            "/swagger-ui/**",
+                            "/swagger-ui.html",
+                            "/swagger-resources/**",
+                            "/webjars/**"
+                    ).permitAll();
+
                     // Allowing anyone to create a new user
                     authorize.requestMatchers("/api/user/createUser").permitAll();
+                    authorize.requestMatchers("api/blog/getBlog/*/public").permitAll();
+                    authorize.requestMatchers("api/blog/getAllBlogs/*/public").permitAll();
+
 
                     authorize.anyRequest().authenticated();
-//                    authorize.requestMatchers("/api/blod/*").authenticated();
+//                    authorize.requestMatchers("/api/blog/*").authenticated();
 //                    authorize.requestMatchers("/api/user/*").authenticated();
 
                 })

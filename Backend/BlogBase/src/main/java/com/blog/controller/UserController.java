@@ -42,7 +42,7 @@ public class UserController {
     }
 
     @PreAuthorize("hasRole('BASICUSER') or hasRole('ADMIN')")
-    @GetMapping("/getSelf")
+    @GetMapping("/login")
     public ResponseEntity<?> getSelf(Principal principal) {
         return userService.getSelf(principal.getName());
     }

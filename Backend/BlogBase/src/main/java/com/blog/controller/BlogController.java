@@ -10,7 +10,6 @@ import java.security.Principal;
 
 @RestController
 @RequestMapping("/api/blog")
-@PreAuthorize("hasRole('BASICUSER') or hasRole('ADMIN')")
 public class BlogController {
     private final BlogService blogService;
 
@@ -34,5 +33,14 @@ public class BlogController {
         return blogService.addBlog(blog, principal.getName());
     }
 
+    @GetMapping("/getBlog/{blogId}/public")
+    public ResponseEntity<?> getBlogPublic(@PathVariable long blogId) {
+        return blogService.getBlogPublic(blogId);
+    }
+
+    @GetMapping("/getAllBlogs/{username}/public")
+    public ResponseEntity<?> getAllBlogsPublic(@PathVariable String username) {
+        return blogService.getAllBlogsPublic(username);
+    }
 
 }

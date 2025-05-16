@@ -1,5 +1,7 @@
 package com.blog.service;
 
+import com.blog.dto.PublicResponse;
+import com.blog.dto.UserResponse;
 import com.blog.entity.Blog;
 import com.blog.entity.CustomUser;
 import com.blog.exception.ResourceNotFoundException;
@@ -44,5 +46,19 @@ public class BlogService {
         user.addBlog(blog);
         userRepo.save(user);
         return new ResponseEntity<>("Blog added to " + user.getUsername(), HttpStatus.CREATED);
+    }
+
+    public ResponseEntity<?> getBlogPublic(long blogId) {
+        Blog blog = blogRepo.findById(blogId).orElseThrow(() -> new ResourceNotFoundException("Blog Not Found"));
+        CustomUser customUser = userRepo.findUserByBlogId(blogId)
+                .orElseThrow(() -> new ResourceNotFoundException("User Not Found for blogId: " + blogId));
+        PublicResponse response = new PublicResponse(customUser, blog);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    public ResponseEntity<?> getAllBlogsPublic(String username) {
+        CustomUser user = userRepo.findByUsername(username)
+                .orElseThrow(() -> new ResourceNotFoundException("User Not Found with username: " + username));
+        return new ResponseEntity<>(new UserResponse(user), HttpStatus.OK);
     }
 }

@@ -6,27 +6,26 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class UserResponse {
+@NoArgsConstructor
+public class PublicResponse {
 
-//    This class is the response for multiple published blog for a single user and
-//    also when a user logs in
+    // This class is the response for getting a single published blog
 
+    Blog blog;
     private String username;
     private String firstName;
     private String lastName;
     private String email;
-    private List<Blog> blogs;
 
-    public UserResponse(CustomUser customUser) {
+    public PublicResponse(CustomUser customUser, Blog blog) {
+
         this.username = customUser.getUsername();
         this.firstName = customUser.getFirstName();
         this.lastName = customUser.getLastName();
         this.email = customUser.getEmail();
-        this.blogs = customUser.getBlogs();
+        this.blog = blog;
+
     }
 }
