@@ -2,6 +2,7 @@ package com.blog.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
@@ -43,15 +44,18 @@ public class SecurityConfig {
                             "/webjars/**"
                     ).permitAll();
 
-                    // Allowing anyone to create a new user
+                    authorize.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll();
+
+                    // Allowing anyone to test and to create a new user
+                    authorize.requestMatchers("/api/user/publicTest").permitAll();
                     authorize.requestMatchers("/api/user/createUser").permitAll();
+
+                    // public apis
                     authorize.requestMatchers("api/blog/getBlog/*/public").permitAll();
                     authorize.requestMatchers("api/blog/getAllBlogs/*/public").permitAll();
-
+                    authorize.requestMatchers("api/user/public").permitAll();
 
                     authorize.anyRequest().authenticated();
-//                    authorize.requestMatchers("/api/blog/*").authenticated();
-//                    authorize.requestMatchers("/api/user/*").authenticated();
 
                 })
                 .addFilterBefore(new BasicAuthenticationFilter(authenticationManager(httpSecurity)),

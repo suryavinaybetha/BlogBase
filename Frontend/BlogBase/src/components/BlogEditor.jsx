@@ -1,58 +1,55 @@
 "use client"
 
-import { useState, useEffect } from "react"
-import { motion } from "framer-motion"
+import {useState} from "react"
+import {motion} from "framer-motion"
 
-const BlogEditor = ({ blog, onSave, onClose }) => {
-    const [title, setTitle] = useState("")
-    const [content, setContent] = useState("")
-    const [category, setCategory] = useState("technology")
+const BlogEditor = ({blog, onSave, onClose}) => {
     const [error, setError] = useState("")
+    const [formData, setFormData] = useState({
+        title: "",
+        content: "",
+        ...blog
+    })
 
-    useEffect(() => {
-        if (blog) {
-            setTitle(blog.title || "")
-            setContent(blog.content || "")
-            setCategory(blog.category || "technology")
-        }
-    }, [blog])
-
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
         setError("")
 
-        if (!title.trim()) {
-            setError("Title is required")
-            return
-        }
+        if (blog) {
+            // handle Update
+        } else {
+            if (!formData.title.trim()) {
+                setError("Title is required")
+                return
+            }
 
-        if (!content.trim()) {
-            setError("Content is required")
-            return
+            if (!formData.content.trim()) {
+                setError("Content is required")
+                return
+            }
         }
-
-        onSave({
-            title,
-            content,
-            category,
-            updatedAt: new Date().toISOString(),
-        })
+        onSave(formData)
     }
+
+    const handleChange = (e) => {
+        const {name, value} = e.target;
+        setFormData(prev => ({...prev, [name]: value}));
+    };
 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center">
             <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 0.7 }}
-                exit={{ opacity: 0 }}
+                initial={{opacity: 0}}
+                animate={{opacity: 0.7}}
+                exit={{opacity: 0}}
                 className="absolute inset-0 bg-gray-900 bg-opacity-50 backdrop-blur-sm"
                 onClick={onClose}
             />
 
             <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 20 }}
+                initial={{opacity: 0, y: 20}}
+                animate={{opacity: 1, y: 0}}
+                exit={{opacity: 0, y: 20}}
                 className="bg-white rounded-lg shadow-xl p-6 w-full max-w-4xl z-10 relative max-h-[90vh] overflow-y-auto"
             >
                 <button onClick={onClose} className="absolute top-4 right-4 text-gray-500 hover:text-gray-700">
@@ -71,32 +68,12 @@ const BlogEditor = ({ blog, onSave, onClose }) => {
                         <input
                             id="title"
                             type="text"
-                            value={title}
-                            onChange={(e) => setTitle(e.target.value)}
+                            name="title"
+                            value={formData.title}
+                            onChange={handleChange}
                             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-400"
                             placeholder="Enter blog title"
                         />
-                    </div>
-
-                    <div>
-                        <label htmlFor="category" className="block text-sm font-medium text-gray-700 mb-1">
-                            Category
-                        </label>
-                        <select
-                            id="category"
-                            value={category}
-                            onChange={(e) => setCategory(e.target.value)}
-                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-400"
-                        >
-                            <option value="technology">Technology</option>
-                            <option value="design">Design</option>
-                            <option value="business">Business</option>
-                            <option value="health">Health & Wellness</option>
-                            <option value="travel">Travel</option>
-                            <option value="food">Food</option>
-                            <option value="personal">Personal</option>
-                            <option value="other">Other</option>
-                        </select>
                     </div>
 
                     <div>
@@ -105,8 +82,9 @@ const BlogEditor = ({ blog, onSave, onClose }) => {
                         </label>
                         <textarea
                             id="content"
-                            value={content}
-                            onChange={(e) => setContent(e.target.value)}
+                            name="content"
+                            value={formData.content}
+                            onChange={handleChange}
                             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-400 min-h-[300px]"
                             placeholder="Write your blog content here..."
                         />
@@ -114,14 +92,8 @@ const BlogEditor = ({ blog, onSave, onClose }) => {
 
                     <div className="flex justify-end gap-3 pt-4">
                         <button
-                            type="button"
-                            onClick={onClose}
-                            className="px-4 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition-colors"
-                        >
-                            Publish
-                        </button>
-                        <button
-                            type="submit"                          
+                            type="submit"
+                            onClick={handleSubmit}
                             className="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-100 transition-colors"
                         >
                             {blog ? "Update Blog" : "Create Blog"}

@@ -33,14 +33,38 @@ public class BlogController {
         return blogService.addBlog(blog, principal.getName());
     }
 
-    @GetMapping("/getBlog/{blogId}/public")
-    public ResponseEntity<?> getBlogPublic(@PathVariable long blogId) {
-        return blogService.getBlogPublic(blogId);
+    @PreAuthorize("hasRole('BASICUSER')")
+    @PostMapping("/updateBlog")
+    public ResponseEntity<?> updateBlogOfUser(@RequestBody Blog blog, Principal principal) {
+        return blogService.updateBlog(blog, principal.getName());
     }
 
-    @GetMapping("/getAllBlogs/{username}/public")
-    public ResponseEntity<?> getAllBlogsPublic(@PathVariable String username) {
-        return blogService.getAllBlogsPublic(username);
+    @PreAuthorize("hasRole('BASICUSER')")
+    @DeleteMapping("/deleteBlog/{blogId}")
+    public ResponseEntity<?> deleteBlogOfUser(@PathVariable Long blogId, Principal principal) {
+        return blogService.deleteBlog(blogId, principal.getName());
+    }
+
+    @PreAuthorize("hasRole('BASICUSER')")
+    @PutMapping("/publishBlog/{blogId}")
+    public ResponseEntity<?> publishBlogOfUser(@PathVariable Long blogId) {
+        return blogService.publishBlog(blogId);
+    }
+
+    @PreAuthorize("hasRole('BASICUSER')")
+    @PutMapping("/unPublishBlog/{blogId}")
+    public ResponseEntity<?> unPublishBlogOfUser(@PathVariable Long blogId) {
+        return blogService.unPublishBlog(blogId);
+    }
+
+//    @GetMapping("/getBlog/{blogId}/public")
+//    public ResponseEntity<?> getBlogPublic(@PathVariable long blogId) {
+//        return blogService.getBlogPublic(blogId);
+//    }
+
+    @GetMapping("/getBlog/{identifier}/public")
+    public ResponseEntity<?> getAllBlogsPublic(@PathVariable String identifier) {
+        return blogService.getAllBlogsPublic(identifier);
     }
 
 }

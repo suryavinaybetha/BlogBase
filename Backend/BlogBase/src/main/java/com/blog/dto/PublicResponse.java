@@ -6,6 +6,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -13,7 +16,7 @@ public class PublicResponse {
 
     // This class is the response for getting a single published blog
 
-    Blog blog;
+    List<Blog> blogs = new ArrayList<>();
     private String username;
     private String firstName;
     private String lastName;
@@ -25,7 +28,7 @@ public class PublicResponse {
         this.firstName = customUser.getFirstName();
         this.lastName = customUser.getLastName();
         this.email = customUser.getEmail();
-        this.blog = blog;
+        this.blogs.add(blog);
 
     }
 }

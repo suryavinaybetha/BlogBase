@@ -1,56 +1,48 @@
-"use client"
+import {createContext, useContext, useEffect, useState} from "react";
 
-import { createContext, useContext, useState, useEffect } from "react"
+const AuthContext = createContext();
 
-const AuthContext = createContext()
+export const AuthProvider = ({children}) => {
+    const [user, setUser] = useState(null); // ✅ safer initial state
 
-export function useAuth() {
-    return useContext(AuthContext)
-}
-
-export function AuthProvider({ children }) {
-    const [currentUser, setCurrentUser] = useState(null)
-    const [loading, setLoading] = useState(true)
-
-    // Simulate checking for a saved user in localStorage
     useEffect(() => {
-        const savedUser = localStorage.getItem("blogbase_user")
-        if (savedUser) {
-            setCurrentUser(JSON.parse(savedUser))
+        const storedUser = localStorage.getItem("user");
+        if (storedUser) {
+            setUser(JSON.parse(storedUser));
         }
-        setLoading(false)
-    }, [])
 
-    // Login function
-    const login = (email, password) => {
-        // This is a mock login - in a real app, you'd validate against a backend
-        const user = { id: 1, name: "Grogu", email }
-        setCurrentUser(user)
-        localStorage.setItem("blogbase_user", JSON.stringify(user))
-        return user
-    }
+        const handleStorageChange = () => {
+            const updatedUser = localStorage.getItem("user");
+            setUser(updatedUser ? JSON.parse(updatedUser) : null);
+        };
 
-    // Signup function
-    const signup = (name, email, password) => {
-        // This is a mock signup - in a real app, you'd create a user in your backend
-        const user = { id: Date.now(), name, email }
-        setCurrentUser(user)
-        localStorage.setItem("blogbase_user", JSON.stringify(user))
-        return user
-    }
+        window.addEventListener("storage", handleStorageChange);
+        return () => window.removeEventListener("storage", handleStorageChange);
+    }, []);
 
-    // Logout function
-    const logout = () => {
-        setCurrentUser(null)
-        localStorage.removeItem("blogbase_user")
-    }
+    const authLogin = (authData) => {
+        setUser(authData);
+    };
 
-    const value = {
-        currentUser,
-        login,
-        signup,
-        logout,
-    }
+    const authLogout = () => {
+        setUser(null);
+        sessionStorage.removeItem("auth");
+        localStorage.removeItem("user");
+    };
 
-    return <AuthContext.Provider value={value}>{!loading && children}</AuthContext.Provider>
-}
+    const refreshAuth = () => {
+        const storedUser = localStorage.getItem("user");
+        if (storedUser) {
+            setUser(JSON.parse(storedUser));
+            console.log("Auth User after refresh", JSON.parse(storedUser));
+        }
+    };
+
+    return (
+        <AuthContext.Provider value={{user, authLogin, authLogout, refreshAuth}}>
+            {children}
+        </AuthContext.Provider>
+    );
+};
+
+export const useAuth = () => useContext(AuthContext); // ✅ hook stays top-level
