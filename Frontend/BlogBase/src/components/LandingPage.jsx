@@ -6,6 +6,7 @@ import {useAuth} from "../context/AuthContext"
 import AuthModal from "./AuthModal"
 import {motion} from "framer-motion"
 import {allPublished} from "../services/landingPageService.js";
+import Footer from "./Footer.jsx";
 
 const LandingPage = () => {
     const [showModal, setShowModal] = useState(false)
@@ -285,11 +286,7 @@ const LandingPage = () => {
             )}
 
             {/* Footer */}
-            <footer className="py-8 bg-gray-100">
-                <div className="max-w-6xl mx-auto px-6 text-center text-gray-600">
-                    <p>© {new Date().getFullYear()} BlogBase. All rights reserved.</p>
-                </div>
-            </footer>
+            <Footer/>
 
             {/* Auth Modal */}
             {showModal && (

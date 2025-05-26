@@ -2,6 +2,7 @@ import {useNavigate, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {publishedBlog} from "../services/landingPageService.js";
 import {motion} from "framer-motion";
+import Footer from "./Footer.jsx";
 
 const PublicBlogPage = () => {
     const {id} = useParams();
@@ -89,11 +90,7 @@ const PublicBlogPage = () => {
                 </div>
 
                 {/* Footer */}
-                <footer className="py-8 bg-gray-100">
-                    <div className="max-w-6xl mx-auto px-6 text-center text-gray-600">
-                        <p>© {new Date().getFullYear()} BlogBase. All rights reserved.</p>
-                    </div>
-                </footer>
+                <Footer/>
             </div>
 
         </>
