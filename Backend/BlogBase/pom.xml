@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.blog</groupId>
-    <artifactId>demo</artifactId>
+    <artifactId>BlogBase</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>demo</name>
     <description>A platform where anyone can come to host their blog</description>
