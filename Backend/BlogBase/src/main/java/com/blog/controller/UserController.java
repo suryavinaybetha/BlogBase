@@ -18,6 +18,11 @@ public class UserController {
         this.userService = userService;
     }
 
+    @GetMapping("/publicTest")
+    public ResponseEntity<String> publicTest() {
+        return ResponseEntity.ok("Hello World");
+    }
+
     @PostMapping("/createUser")
     public ResponseEntity<?> addUser(@RequestBody UserRequest user) {
         return userService.addUser(user);
@@ -27,6 +32,11 @@ public class UserController {
     @GetMapping("")
     public ResponseEntity<?> getAllUsers() {
         return userService.getAllUsers();
+    }
+
+    @GetMapping("/public")
+    public ResponseEntity<?> getAllUsersPublic() {
+        return userService.getAllUsersPublic();
     }
 
     @PreAuthorize("hasRole('ADMIN')")
@@ -42,7 +52,7 @@ public class UserController {
     }
 
     @PreAuthorize("hasRole('BASICUSER') or hasRole('ADMIN')")
-    @GetMapping("/getSelf")
+    @GetMapping("/login")
     public ResponseEntity<?> getSelf(Principal principal) {
         return userService.getSelf(principal.getName());
     }

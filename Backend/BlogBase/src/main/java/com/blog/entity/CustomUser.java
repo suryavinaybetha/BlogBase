@@ -28,7 +28,7 @@ public class CustomUser {
 
     @Column(unique = true, nullable = false)
     private String email;
-    private String userType;
+    private String userType = "BASICUSER";
     private Boolean isActive = true;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -41,7 +41,6 @@ public class CustomUser {
         this.firstName = request.getFirstName();
         this.lastName = request.getLastName();
         this.email = request.getEmail();
-        this.userType = request.getUserType();
     }
 
     public void addBlog(Blog blog) {
