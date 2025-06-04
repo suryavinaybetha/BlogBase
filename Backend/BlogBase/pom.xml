@@ -11,7 +11,7 @@
     <groupId>com.blog</groupId>
     <artifactId>BlogBase</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>demo</name>
+    <name>BlogBase</name>
     <description>A platform where anyone can come to host their blog</description>
     <url/>
     <licenses>
