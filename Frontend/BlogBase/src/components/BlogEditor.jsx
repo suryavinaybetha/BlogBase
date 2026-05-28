@@ -50,7 +50,7 @@ const BlogEditor = ({blog, onSave, onClose}) => {
                 initial={{opacity: 0, y: 20}}
                 animate={{opacity: 1, y: 0}}
                 exit={{opacity: 0, y: 20}}
-                className="bg-white rounded-lg shadow-xl p-6 w-full max-w-4xl z-10 relative max-h-[90vh] overflow-y-auto"
+                className="bg-white rounded-lg shadow-xl p-6 w-[calc(100%-2rem)] max-w-4xl mx-4 sm:mx-0 z-10 relative max-h-[90vh] overflow-y-auto"
             >
                 <button onClick={onClose} className="absolute top-4 right-4 text-gray-500 hover:text-gray-700">
                     ✕
@@ -85,7 +85,7 @@ const BlogEditor = ({blog, onSave, onClose}) => {
                             name="content"
                             value={formData.content}
                             onChange={handleChange}
-                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-400 min-h-[300px]"
+                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-400 min-h-[200px] sm:min-h-[300px]"
                             placeholder="Write your blog content here..."
                         />
                     </div>

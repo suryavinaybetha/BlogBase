@@ -43,7 +43,7 @@ const LandingPage = () => {
     return (
         <div className="min-h-screen bg-gradient-to-b from-white to-gray-100">
             {/* Navigation */}
-            <nav className="px-6 py-4 flex justify-between items-center">
+            <nav className="px-6 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
                 <motion.div
                     initial={{opacity: 0, y: -20}}
                     animate={{opacity: 1, y: 0}}
@@ -52,7 +52,7 @@ const LandingPage = () => {
                 >
                     BlogBase
                 </motion.div>
-                <div className="flex gap-4">
+                <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
 
                     <button
                         onClick={handleView}
@@ -62,7 +62,7 @@ const LandingPage = () => {
                     </button>
 
                     {currentUser ? (
-                        <>
+                        <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
                             <span className="text-gray-600">Hello, {currentUser.name}</span>
                             <button
                                 onClick={() => navigate("/dashboard")}
@@ -76,9 +76,9 @@ const LandingPage = () => {
                             >
                                 Logout
                             </button>
-                        </>
+                        </div>
                     ) : (
-                        <>
+                        <div className="flex items-center gap-3">
                             <button
                                 onClick={() => handleAuthClick(true)}
                                 className="px-4 py-2 text-gray-700 hover:text-gray-900 transition-colors cursor-pointer"
@@ -91,7 +91,7 @@ const LandingPage = () => {
                             >
                                 Sign Up
                             </button>
-                        </>
+                        </div>
                     )}
                 </div>
             </nav>
@@ -103,13 +103,13 @@ const LandingPage = () => {
                         initial={{opacity: 0}}
                         animate={{opacity: 1}}
                         transition={{duration: 0.8}}
-                        className="max-w-6xl mx-auto px-6 py-20 text-center"
+                        className="max-w-6xl mx-auto px-6 py-12 sm:py-20 text-center"
                     >
                         <motion.h1
                             initial={{opacity: 0, y: 20}}
                             animate={{opacity: 1, y: 0}}
                             transition={{delay: 0.2, duration: 0.6}}
-                            className="text-5xl font-bold text-gray-800 mb-6"
+                            className="text-3xl sm:text-5xl font-bold text-gray-800 mb-6 leading-tight"
                         >
                             Share Your Story with the World
                         </motion.h1>
@@ -117,7 +117,7 @@ const LandingPage = () => {
                             initial={{opacity: 0, y: 20}}
                             animate={{opacity: 1, y: 0}}
                             transition={{delay: 0.4, duration: 0.6}}
-                            className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto"
+                            className="text-base sm:text-xl text-gray-600 mb-8 max-w-3xl mx-auto"
                         >
                             Join a thriving community of writers, thinkers, and creators. BlogBase is where ideas come
                             to life and
@@ -137,14 +137,14 @@ const LandingPage = () => {
                     {/* Features Section */}
                     <section className="pb-16 bg-white">
                         <div className="max-w-6xl mx-auto px-6">
-                            <h2 className="text-3xl font-bold text-center text-gray-800 mb-12">Why Join BlogBase?</h2>
-                            <div className="grid md:grid-cols-3 gap-8">
+                            <h2 className="text-2xl sm:text-3xl font-bold text-center text-gray-800 mb-8 sm:mb-12">Why Join BlogBase?</h2>
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
                                 <motion.div
                                     initial={{opacity: 0, y: 20}}
                                     whileInView={{opacity: 1, y: 0}}
                                     transition={{duration: 0.5}}
                                     viewport={{once: true}}
-                                    className="p-6 bg-gray-100 rounded-lg shadow-md"
+                                    className="p-6 bg-gray-100 rounded-lg shadow-sm"
                                 >
                                     <h3 className="text-xl font-semibold mb-3 text-gray-800">Join Communities</h3>
                                     <p className="text-gray-600">
@@ -157,7 +157,7 @@ const LandingPage = () => {
                                     whileInView={{opacity: 1, y: 0}}
                                     transition={{duration: 0.5, delay: 0.2}}
                                     viewport={{once: true}}
-                                    className="p-6 bg-gray-100 rounded-lg shadow-md"
+                                    className="p-6 bg-gray-100 rounded-lg shadow-sm"
                                 >
                                     <h3 className="text-xl font-semibold mb-3 text-gray-800">Share Experiences</h3>
                                     <p className="text-gray-600">
@@ -170,7 +170,7 @@ const LandingPage = () => {
                                     whileInView={{opacity: 1, y: 0}}
                                     transition={{duration: 0.5, delay: 0.4}}
                                     viewport={{once: true}}
-                                    className="p-6 bg-gray-100 rounded-lg shadow-md"
+                                    className="p-6 bg-gray-100 rounded-lg shadow-sm"
                                 >
                                     <h3 className="text-xl font-semibold mb-3 text-gray-800">Grow Your Skills</h3>
                                     <p className="text-gray-600">
@@ -183,17 +183,17 @@ const LandingPage = () => {
                     </section>
 
                     {/* Testimonials */}
-                    <section className="py-16 bg-gray-50">
+                    <section className="py-12 sm:py-16 bg-gray-50">
                         <div className="max-w-6xl mx-auto px-6">
-                            <h2 className="text-3xl font-bold text-center text-gray-800 mb-12">What Our Community
+                            <h2 className="text-2xl sm:text-3xl font-bold text-center text-gray-800 mb-8 sm:mb-12">What Our Community
                                 Says</h2>
-                            <div className="grid md:grid-cols-2 gap-8">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
                                 <motion.div
                                     initial={{opacity: 0, x: -20}}
                                     whileInView={{opacity: 1, x: 0}}
                                     transition={{duration: 0.5}}
                                     viewport={{once: true}}
-                                    className="p-6 bg-white rounded-lg shadow-md"
+                                    className="p-6 bg-white rounded-lg shadow-sm"
                                 >
                                     <p className="text-gray-600 mb-4">
                                         "BlogBase has transformed how I share my tech journey. The community feedback
@@ -207,7 +207,7 @@ const LandingPage = () => {
                                     whileInView={{opacity: 1, x: 0}}
                                     transition={{duration: 0.5}}
                                     viewport={{once: true}}
-                                    className="p-6 bg-white rounded-lg shadow-md"
+                                    className="p-6 bg-white rounded-lg shadow-sm"
                                 >
                                     <p className="text-gray-600 mb-4">
                                         "I've found my voice through writing on BlogBase. The platform is intuitive and
@@ -221,11 +221,11 @@ const LandingPage = () => {
                     </section>
 
                     {/* Call to Action */}
-                    <section className="py-20 bg-white">
+                    <section className="py-12 sm:py-20 bg-white">
                         <div className="max-w-4xl mx-auto px-6 text-center">
-                            <h2 className="text-3xl font-bold text-gray-800 mb-6">Ready to Start Your Blogging
+                            <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-6">Ready to Start Your Blogging
                                 Journey?</h2>
-                            <p className="text-xl text-gray-600 mb-8">
+                            <p className="text-base sm:text-xl text-gray-600 mb-8">
                                 Join thousands of writers who have already found their home on BlogBase.
                             </p>
                             <button
@@ -240,14 +240,14 @@ const LandingPage = () => {
             ) : (
                 <>
                     {/* Published Blogs Section */}
-                    <section className="py-20 bg-white">
+                    <section className="py-12 sm:py-20 bg-white">
                         <div className="max-w-6xl mx-auto px-6">
-                            <h2 className="text-3xl font-bold text-gray-800 mb-8 text-center">
+                            <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-8 text-center">
                                 Published Blogs
                             </h2>
 
                             {/* Check if users exist and map through them */}
-                            <div className="">
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                                 {blogs.map((user) =>
                                     user.blogs.length > 0 ? (
                                         user.blogs.map((blog, index) => (
@@ -256,15 +256,17 @@ const LandingPage = () => {
                                                 animate={{opacity: 1, y: 0}}
                                                 transition={{duration: 0.4}}
                                                 key={`${user.username}-${index}`}
-                                                className="p-4 bg-gray-100 rounded shadow mb-4"
+                                                className="p-6 bg-gray-100 rounded-lg shadow-sm flex flex-col justify-between h-full"
                                             >
-                                                <h3 className="font-semibold text-lg text-gray-800 mb-2">
-                                                    {blog.title || "Untitled Blog"}
-                                                </h3>
-                                                <p className="text-gray-600 text-sm">
-                                                    {blog.content || "No description available."}
-                                                </p>
-                                                <p className="text-sm text-gray-400 mt-2">
+                                                <div>
+                                                    <h3 className="font-semibold text-lg text-gray-800 mb-2">
+                                                        {blog.title || "Untitled Blog"}
+                                                    </h3>
+                                                    <p className="text-gray-600 text-sm line-clamp-4">
+                                                        {blog.content || "No description available."}
+                                                    </p>
+                                                </div>
+                                                <p className="text-sm text-gray-400 mt-4">
                                                     by {user.firstName} {user.lastName}
                                                 </p>
                                             </motion.div>
@@ -272,7 +274,7 @@ const LandingPage = () => {
                                     ) : (
                                         <div
                                             key={user.username}
-                                            className="p-4 mb-4 bg-gray-50 rounded shadow col-span-1 text-center text-sm text-gray-500"
+                                            className="p-6 bg-gray-50 rounded-lg border border-dashed border-gray-200 text-center text-sm text-gray-500 flex items-center justify-center min-h-[120px]"
                                         >
                                             {user.firstName} {user.lastName} hasn’t published any blogs.
                                         </div>

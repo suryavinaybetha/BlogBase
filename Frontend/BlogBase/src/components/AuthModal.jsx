@@ -68,7 +68,7 @@ const AuthModal = ({isLogin, onClose, onSwitchMode}) => {
             <motion.div
                 layout
                 transition={{type: "spring", damping: 20, stiffness: 150}}
-                className="bg-white rounded-lg shadow-xl p-8 w-full max-w-md z-10 relative overflow-hidden"
+                className="bg-white rounded-lg shadow-xl p-6 sm:p-8 w-[calc(100%-2rem)] max-w-md mx-4 sm:mx-0 z-10 relative overflow-hidden"
             >
                 <button
                     onClick={onClose}
@@ -97,10 +97,9 @@ const AuthModal = ({isLogin, onClose, onSwitchMode}) => {
                         <form onSubmit={handleSubmit} className="space-y-4">
                             {!isLogin && (
                                 <motion.div layout>
-                                    <div className="flex justify-between gap-2 mb-4">
-                                        <div>
-                                            <label className="block text-sm font-medium text-gray-700 mb-1">First
-                                                Name</label>
+                                    <div className="flex flex-col sm:flex-row gap-4 sm:gap-2 mb-4">
+                                        <div className="w-full">
+                                            <label className="block text-sm font-medium text-gray-700 mb-1">First Name</label>
                                             <input
                                                 name="firstName"
                                                 type="text"
@@ -110,9 +109,8 @@ const AuthModal = ({isLogin, onClose, onSwitchMode}) => {
                                                 required
                                             />
                                         </div>
-                                        <div>
-                                            <label className="block text-sm font-medium text-gray-700 mb-1">Last
-                                                Name</label>
+                                        <div className="w-full">
+                                            <label className="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
                                             <input
                                                 name="lastName"
                                                 type="text"

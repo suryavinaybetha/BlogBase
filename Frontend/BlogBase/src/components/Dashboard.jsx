@@ -109,20 +109,20 @@ const Dashboard = () => {
         <div className="min-h-screen bg-gray-50">
             {/* Navigation */}
             <nav className="bg-white shadow-sm">
-                <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+                <div className="max-w-6xl mx-auto px-6 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
                     <div className="flex items-center">
                         <button onClick={() => {
                             navigate("/");
                             authLogout()
-                        }} className="text-2xl font-bold text-gray-800">
+                        }} className="text-2xl font-bold text-gray-800 cursor-pointer">
                             BlogBase
                         </button>
                     </div>
-                    <div className="flex items-center gap-4">
+                    <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
                         <span className="text-gray-600">Hello, {user.firstName}</span>
                         <button
                             onClick={handleLogoutClick}
-                            className="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-100 transition-colors"
+                            className="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-100 transition-colors cursor-pointer"
                         >
                             Logout
                         </button>
@@ -132,11 +132,11 @@ const Dashboard = () => {
 
             {/* Dashboard Content */}
             <div className="max-w-6xl mx-auto px-6 py-8">
-                <div className="flex justify-between items-center mb-8">
-                    <h1 className="text-3xl font-bold text-gray-800">Your Blog Shelf</h1>
+                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
+                    <h1 className="text-2xl sm:text-3xl font-bold text-gray-800">Your Blog Shelf</h1>
                     <button
                         onClick={handleCreateBlog}
-                        className="px-4 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition-colors"
+                        className="px-4 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition-colors cursor-pointer"
                     >
                         Create New Blog
                     </button>
@@ -147,13 +147,13 @@ const Dashboard = () => {
                         <p className="text-gray-600 mb-4">You haven't created any blog yet.</p>
                         <button
                             onClick={handleCreateBlog}
-                            className="px-4 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition-colors"
+                            className="px-4 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition-colors cursor-pointer"
                         >
                             Write Your First Blog
                         </button>
                     </div>
                 ) : (
-                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                         {user?.blogs?.map((blog) => (
                             <motion.div
                                 key={blog.id}
