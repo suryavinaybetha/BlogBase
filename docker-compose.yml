@@ -1,0 +1,26 @@
+services:
+  backend:
+    build:
+      context: ./Backend/BlogBase
+      dockerfile: Dockerfile
+    container_name: blogbase-backend
+    restart: always
+    network_mode: "host"
+    environment:
+      - SPRING_PROFILES_ACTIVE=prodnossl
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5432/blog_base
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+      - APP_CORS_ALLOWED_ORIGINS=https://blogbase.suryavinaybetha.xyz,http://localhost:5173
+
+  frontend:
+    build:
+      context: ./Frontend/BlogBase
+      dockerfile: Dockerfile
+      args:
+        - VITE_BASE_URL=https://blogbase-api.suryavinaybetha.xyz/api
+    container_name: blogbase-frontend
+    restart: always
+    network_mode: "host"
+    depends_on:
+      - backend
