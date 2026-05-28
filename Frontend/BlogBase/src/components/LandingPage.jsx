@@ -183,7 +183,7 @@ const LandingPage = () => {
                     </section>
 
                     {/* Testimonials */}
-                    <section className="py-12 sm:py-16 bg-gray-50">
+                    {/* <section className="py-12 sm:py-16 bg-gray-50">
                         <div className="max-w-6xl mx-auto px-6">
                             <h2 className="text-2xl sm:text-3xl font-bold text-center text-gray-800 mb-8 sm:mb-12">What Our Community
                                 Says</h2>
@@ -218,7 +218,7 @@ const LandingPage = () => {
                                 </motion.div>
                             </div>
                         </div>
-                    </section>
+                    </section> */}
 
                     {/* Call to Action */}
                     <section className="py-12 sm:py-20 bg-white">
