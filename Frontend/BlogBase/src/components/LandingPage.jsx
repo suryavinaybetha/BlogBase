@@ -262,7 +262,7 @@ const LandingPage = () => {
                                                     <h3 className="font-semibold text-lg text-gray-800 mb-2">
                                                         {blog.title || "Untitled Blog"}
                                                     </h3>
-                                                    <p className="text-gray-600 text-sm line-clamp-4">
+                                                    <p className="text-gray-600 text-sm whitespace-pre-wrap">
                                                         {blog.content || "No description available."}
                                                     </p>
                                                 </div>

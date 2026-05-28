@@ -50,7 +50,7 @@ const PublicBlogPage = () => {
                                     By {user?.firstName} {user?.lastName} ({user?.username})
                                 </p>
                                 <div className="prose prose-lg max-w-none text-gray-700">
-                                    <p>{user?.blogs[0]?.content}</p>
+                                    <p className="whitespace-pre-wrap">{user?.blogs[0]?.content}</p>
                                 </div>
                                 {user?.blogs[0]?.createdAt && (
                                     <p className="mt-6 text-sm text-gray-400">
@@ -76,7 +76,7 @@ const PublicBlogPage = () => {
                                              className="bg-gray-100 shadow-sm rounded-lg p-6 hover:shadow-md transition-shadow flex flex-col justify-between h-full">
                                             <div>
                                                 <h2 className="text-xl font-semibold text-gray-800 mb-2">{blog?.title}</h2>
-                                                <p className="text-gray-600 line-clamp-6 mb-4">{blog?.content}</p>
+                                                <p className="text-gray-600 whitespace-pre-wrap mb-4">{blog?.content}</p>
                                             </div>
                                             <p className="text-sm text-gray-400 mt-4">
                                                 {new Date(blog?.createdAt).toLocaleString("en-US", {
